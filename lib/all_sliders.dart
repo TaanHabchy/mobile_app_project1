@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:sharbel_project1/globals.dart';
 import "sliders.dart";
+import 'package:provider/provider.dart';
 
-class allSliders extends StatefulWidget {
+class AllSliders extends StatefulWidget {
+  const AllSliders({super.key});
+
   @override
-  _SliderColumnState createState() => _SliderColumnState();
+  SliderColumnState createState() => SliderColumnState();
 }
 
-class _SliderColumnState extends State<allSliders> {
-  double beginValue = 50;
-  double beginValue1 = 50;
-  double beginValue2 = 50;
-
+class SliderColumnState extends State<AllSliders> {
   @override
   Widget build(BuildContext context) {
+    final globalVariables = context.read<GlobalVariables>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SliderWidget("Slider 1", beginValue, (value) {
+        const Padding(padding: EdgeInsets.only(top: 40)),
+        SliderWidget("Slider 1", globalVariables.slid1, (value) {
           setState(() {
-            beginValue = value;
+            globalVariables.slid1 = value;
           });
         }),
-        SliderWidget("Slider 2", beginValue1, (value) {
+        SliderWidget("Slider 2", globalVariables.slid2, (value) {
           setState(() {
-            beginValue1 = value;
+            globalVariables.slid2 = value;
           });
         }),
-        SliderWidget("Slider 3", beginValue2, (value) {
+        SliderWidget("Slider 3", globalVariables.slid3, (value) {
           setState(() {
-            beginValue2 = value;
+            globalVariables.slid3 = value;
           });
         }),
       ],

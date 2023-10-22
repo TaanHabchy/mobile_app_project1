@@ -1,43 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:sharbel_project1/globals.dart';
 import "basic_switch.dart";
+import 'package:provider/provider.dart';
 
-class allSwitches extends StatefulWidget {
+class AllSwitches extends StatefulWidget {
+  const AllSwitches({super.key});
+
   @override
-  _switchColumn createState() => _switchColumn();
+  SwitchColumn createState() => SwitchColumn();
 }
 
-class _switchColumn extends State<allSwitches> {
-  bool clicked1 = false;
-  bool clicked2 = false;
-  bool clicked3 = false;
-  bool clicked4 = false;
-
+class SwitchColumn extends State<AllSwitches> {
   @override
   Widget build(BuildContext context) {
+    final globalVariables = context.read<GlobalVariables>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(padding: EdgeInsets.only(top: 0)),
-        BasicSwitch(clicked1, "Switch 1", (value) {
-          setState(() {
-            clicked1 = value;
-          });
-        }),
-        BasicSwitch(clicked2, "Switch 2", (value) {
-          setState(() {
-            clicked2 = value;
-          });
-        }),
-        BasicSwitch(clicked3, "Switch 3", (value) {
-          setState(() {
-            clicked3 = value;
-          });
-        }),
-        BasicSwitch(clicked4, "Switch 4", (value) {
-          setState(() {
-            clicked4 = value;
-          });
-        }),
+        const Padding(padding: EdgeInsets.only(top: 40)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Padding(padding: EdgeInsets.only(top: 0)),
+            BasicSwitch(globalVariables.clicked1, "Switch 1", (value) {
+              setState(() {
+                globalVariables.clicked1 = value;
+              });
+            }),
+            const Padding(padding: EdgeInsets.only(left: 100)),
+            BasicSwitch(globalVariables.clicked2, "Switch 2", (value) {
+              setState(() {
+                globalVariables.clicked2 = value;
+              });
+            }),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            BasicSwitch(globalVariables.clicked3, "Switch 3", (value) {
+              setState(() {
+                globalVariables.clicked3 = value;
+              });
+            }),
+            const Padding(padding: EdgeInsets.only(left: 100)),
+            BasicSwitch(globalVariables.clicked4, "Switch 4", (value) {
+              setState(() {
+                globalVariables.clicked4 = value;
+              });
+            }),
+          ],
+        ),
       ],
     );
   }
